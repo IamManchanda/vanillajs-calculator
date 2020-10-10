@@ -1,25 +1,61 @@
 const calculatorDisplay = document.getElementById("calculator-display");
-
-const operatorButtonPlus = document.getElementById("operator-button-plus");
-const operatorButtonMinus = document.getElementById("operator-button-minus");
-const operatorButtonMultiply = document.getElementById(
+const allNumberButtons = [
+  "number-button-0",
+  "number-button-1",
+  "number-button-2",
+  "number-button-3",
+  "number-button-4",
+  "number-button-5",
+  "number-button-6",
+  "number-button-7",
+  "number-button-8",
+  "number-button-9",
+].map((elNum) => document.getElementById(elNum));
+const allOperatorButtons = [
+  "operator-button-plus",
+  "operator-button-minus",
   "operator-button-multiply",
-);
-const operatorButtonDivision = document.getElementById(
   "operator-button-division",
-);
-const operatorButtonEquals = document.getElementById("operator-button-equals");
-
-const numberButton_0 = document.getElementById("number-button-0");
-const numberButton_1 = document.getElementById("number-button-1");
-const numberButton_2 = document.getElementById("number-button-2");
-const numberButton_3 = document.getElementById("number-button-3");
-const numberButton_4 = document.getElementById("number-button-4");
-const numberButton_5 = document.getElementById("number-button-5");
-const numberButton_6 = document.getElementById("number-button-6");
-const numberButton_7 = document.getElementById("number-button-7");
-const numberButton_8 = document.getElementById("number-button-8");
-const numberButton_9 = document.getElementById("number-button-9");
-
+  "operator-button-equals",
+].map((elOpr) => document.getElementById(elOpr));
 const decimalButton = document.getElementById("decimal-button");
 const clearButton = document.getElementById("clear-button");
+
+const calculate = {
+  "/": (prevNumber, currentNumber) => prevNumber / currentNumber,
+  "*": (prevNumber, currentNumber) => prevNumber * currentNumber,
+  "+": (prevNumber, currentNumber) => prevNumber + currentNumber,
+  "-": (prevNumber, currentNumber) => prevNumber - currentNumber,
+  "=": (prevNumber, currentNumber) => currentNumber,
+};
+
+function handleNumberButton(number) {
+  const displayValue = calculatorDisplay.textContent;
+  calculatorDisplay.textContent =
+    displayValue === "0" ? number : displayValue + number;
+}
+
+function handleOperatorButton(operator) {
+  console.log({ operator });
+}
+
+function handleDecimalButton() {
+  console.log("decimal");
+}
+
+function handleClearButton() {
+  console.log("clear");
+}
+
+allNumberButtons.forEach((numberButton) => {
+  numberButton.addEventListener("click", () => {
+    handleNumberButton(numberButton.value);
+  });
+});
+allOperatorButtons.forEach((operatorButton) => {
+  operatorButton.addEventListener("click", () => {
+    handleOperatorButton(operatorButton.value);
+  });
+});
+decimalButton.addEventListener("click", handleDecimalButton);
+clearButton.addEventListener("click", handleClearButton);
