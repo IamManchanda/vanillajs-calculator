@@ -64,7 +64,7 @@ function handleDecimalButton() {
 }
 
 function handleClearButton() {
-  console.log("clear");
+  calculatorDisplay.textContent = 0;
 }
 
 allNumberButtons.forEach((numberButton) => {
