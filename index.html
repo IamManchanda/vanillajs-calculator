@@ -7,11 +7,39 @@
   <title>Calculator App | VanillaJS</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Piazzolla&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+  <div class="calculator-container">
+    <div class="calculator-display-group">
+      <h1 class="calculator-display" id="calculator-display">0</h1>
+    </div>
+    <div class="calculator-buttons">
+      <button value="+" class="operator" id="operator-button-plus">&plus;</button>
+      <button value="-" class="operator" id="operator-button-minus">&minus;</button>
+      <button value="*" class="operator" id="operator-button-multiply">&times;</button>
+      <button value="/" class="operator" id="operator-button-division">&div;</button>
+
+      <button value="7" id="number-button-7">7</button>
+      <button value="8" id="number-button-8">8</button>
+      <button value="9" id="number-button-9">9</button>
+      <button value="4" id="number-button-4">4</button>
+      <button value="5" id="number-button-5">5</button>
+      <button value="6" id="number-button-6">6</button>
+      <button value="1" id="number-button-1">1</button>
+      <button value="2" id="number-button-2">2</button>
+      <button value="3" id="number-button-3">3</button>
+      
+      <button value="." class="decimal" id="decimal-button">.</button>
+      
+      <button value="0" id="number-button-0">0</button>
+      
+      <button class="clear" id="clear-button">C</button>
+      
+      <button value="=" class="equal-sign operator" id="operator-button-equals">&equals;</button>
+    </div>
+  </div>
   <script src="js/script.js"></script>
 </body>
 

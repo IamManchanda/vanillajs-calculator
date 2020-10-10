@@ -5,4 +5,111 @@ html {
 body {
   margin: 0;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2c5364;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='%23fefefe' fill-opacity='0.13'%3E%3Cpath fill-rule='evenodd' d='M5 3.59L1.46.05.05 1.46 3.59 5 .05 8.54l1.41 1.41L5 6.41l3.54 3.54 1.41-1.41L6.41 5l3.54-3.54L8.54.05 5 3.59zM17 2h24v2H17V2zm0 4h24v2H17V6zM2 17h2v24H2V17zm4 0h2v24H6V17z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.calculator-container {
+  background-color: white;
+  width: 400px;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 3rem -0.5rem rgba(0, 0, 0, 0.8);
+}
+
+.calculator-display-group {
+  background-color: black;
+  color: white;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 0.625rem 0.625rem 0 0;
+}
+
+.calculator-display {
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  font-family: "Lucida Console", sans-serif;
+  font-weight: 100;
+  overflow-x: auto;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.625rem;
+  padding: 0.625rem;
+}
+
+button {
+  min-height: 50px;
+  font-size: 1.25rem;
+  font-weight: 100;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
+}
+
+button:hover,
+button:focus {
+  filter: brightness(110%);
+  border: 0.0625rem solid #ccc;
+}
+
+button:active {
+  transform: translateY(0.0625rem);
+}
+
+button:focus {
+  outline: none;
+}
+
+.operator {
+  background-color: grey;
+  color: white;
+  font-size: 1.875rem;
+}
+
+.clear {
+  background-color: rgb(255, 40, 40);
+  color: white;
+}
+
+.clear:hover,
+.clear:focus {
+  filter: brightness(90%);
+}
+
+.equal-sign {
+  grid-column: -2;
+  grid-row: 2 / span 4;
+  background-color: rgb(13, 206, 87);
+}
+
+@media screen and (max-width: 767px) {
+  .calculator-container {
+    width: 95%;
+  }
 }
