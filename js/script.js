@@ -60,6 +60,9 @@ function handleOperatorButton(operator) {
 
 function handleDecimalButton() {
   console.log("decimal");
+  if (!calculatorDisplay.textContent.includes(".")) {
+    calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
+  }
 }
 
 function handleClearButton() {
