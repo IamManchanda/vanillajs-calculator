@@ -12,8 +12,8 @@ const allNumberButtons = [
   "number-button-9",
 ].map((elNum) => document.getElementById(elNum));
 const allOperatorButtons = [
-  "operator-button-plus",
-  "operator-button-minus",
+  "operator-button-add",
+  "operator-button-subtract",
   "operator-button-multiply",
   "operator-button-division",
   "operator-button-equals",
@@ -22,12 +22,32 @@ const decimalButton = document.getElementById("decimal-button");
 const clearButton = document.getElementById("clear-button");
 
 const calculate = {
-  "/": (prevNumber, currentNumber) => prevNumber / currentNumber,
-  "*": (prevNumber, currentNumber) => prevNumber * currentNumber,
-  "+": (prevNumber, currentNumber) => prevNumber + currentNumber,
-  "-": (prevNumber, currentNumber) => prevNumber - currentNumber,
-  "=": (prevNumber, currentNumber) => currentNumber,
+  "+": addNumbers,
+  "-": subtractNumbers,
+  "*": multiplyNumbers,
+  "/": divideNumbers,
+  "=": equateNumbers,
 };
+
+function addNumbers(prevNumber, currentNumber) {
+  return prevNumber + currentNumber;
+}
+
+function subtractNumbers(prevNumber, currentNumber) {
+  return prevNumber - currentNumber;
+}
+
+function multiplyNumbers(prevNumber, currentNumber) {
+  return prevNumber * currentNumber;
+}
+
+function divideNumbers(prevNumber, currentNumber) {
+  return prevNumber / currentNumber;
+}
+
+function equateNumbers(prevNumber, currentNumber) {
+  return currentNumber;
+}
 
 function handleNumberButton(number) {
   const displayValue = calculatorDisplay.textContent;
