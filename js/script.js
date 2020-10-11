@@ -21,6 +21,14 @@ const allOperatorButtons = [
 const decimalButton = document.getElementById("decimal-button");
 const clearButton = document.getElementById("clear-button");
 
+const calculateOperators = {
+  "+": handleAddNumbers,
+  "-": handleSubtractNumbers,
+  "*": handleMultiplyNumbers,
+  "/": handleDivideNumbers,
+  "=": handleEquation,
+};
+
 let prevValue = 0;
 let operatorValue = "";
 let awaitingNextValue = false;
@@ -57,22 +65,23 @@ function handleNumberButton(number) {
 }
 
 function handleOperatorButton(operator) {
-  const operators = {
-    "+": handleAddNumbers,
-    "-": handleSubtractNumbers,
-    "*": handleMultiplyNumbers,
-    "/": handleDivideNumbers,
-    "=": handleEquation,
-  };
+  if (operatorValue && awaitingNextValue) {
+    operatorValue = operator;
+    return;
+  }
   const currentValue = Number(calculatorDisplay.textContent);
   if (!prevValue) {
     prevValue = currentValue;
   } else {
-    console.log({ currentValue });
+    const calculation = calculateOperators[operatorValue](
+      prevValue,
+      currentValue,
+    );
+    calculatorDisplay.textContent = calculation;
+    prevValue = calculation;
   }
   awaitingNextValue = true;
   operatorValue = operator;
-  console.log({ fn: operators[operator], prevValue, operatorValue });
 }
 
 function handleDecimalButton() {
