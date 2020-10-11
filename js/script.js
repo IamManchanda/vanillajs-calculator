@@ -21,6 +21,10 @@ const allOperatorButtons = [
 const decimalButton = document.getElementById("decimal-button");
 const clearButton = document.getElementById("clear-button");
 
+let prevValue = 0;
+let operatorValue = "";
+let awaitingNextValue = false;
+
 function handleAddNumbers(prevNumber, currentNumber) {
   return prevNumber + currentNumber;
 }
@@ -37,14 +41,19 @@ function handleDivideNumbers(prevNumber, currentNumber) {
   return prevNumber / currentNumber;
 }
 
-function handleEquateNumbers(prevNumber, currentNumber) {
+function handleEquation(prevNumber, currentNumber) {
   return currentNumber;
 }
 
 function handleNumberButton(number) {
-  const displayValue = calculatorDisplay.textContent;
-  calculatorDisplay.textContent =
-    displayValue === "0" ? number : displayValue + number;
+  if (awaitingNextValue) {
+    calculatorDisplay.textContent = number;
+    awaitingNextValue = false;
+  } else {
+    const displayValue = calculatorDisplay.textContent;
+    calculatorDisplay.textContent =
+      displayValue === "0" ? number : displayValue + number;
+  }
 }
 
 function handleOperatorButton(operator) {
@@ -53,19 +62,30 @@ function handleOperatorButton(operator) {
     "-": handleSubtractNumbers,
     "*": handleMultiplyNumbers,
     "/": handleDivideNumbers,
-    "=": handleEquateNumbers,
+    "=": handleEquation,
   };
-  console.log({ operator });
+  const currentValue = Number(calculatorDisplay.textContent);
+  if (!prevValue) {
+    prevValue = currentValue;
+  } else {
+    console.log({ currentValue });
+  }
+  awaitingNextValue = true;
+  operatorValue = operator;
+  console.log({ fn: operators[operator], prevValue, operatorValue });
 }
 
 function handleDecimalButton() {
-  console.log("decimal");
+  if (awaitingNextValue) return;
   if (!calculatorDisplay.textContent.includes(".")) {
     calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
   }
 }
 
 function handleClearButton() {
+  prevValue = 0;
+  operatorValue = "";
+  awaitingNextValue = false;
   calculatorDisplay.textContent = 0;
 }
 
